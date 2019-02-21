@@ -11,10 +11,10 @@ Install [ESLint](https://www.github.com/eslint/eslint) either locally or globall
 $ npm install eslint
 ```
 
-If you installed `ESLint` globally, you have to install React-intl plugin globally too. Otherwise, install it locally.
+If you installed `ESLint` globally, you have to install linguijs plugin globally too. Otherwise, install it locally.
 
 ```sh
-$ npm install eslint-plugin-react-intl
+$ npm install github:LeoIannacone/eslint-plugin-linguijs
 ```
 
 # Configuration
