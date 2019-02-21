@@ -24,10 +24,9 @@ ruleTester.run('string-is-marked-for-translation', rule, {
         '  render() {',
         '    return (',
         '      <div>',
-        '        <FormattedMessage id=\'asdjl\'',
-        '            description=\'asdjfl\'',
-        '            defaultMessage=\'asdasdasd\'',
-        '        />',
+        '        <Trans>',
+        '          Some string',
+        '        </Trans>',
         '      </div>',
         '    );',
         '  }',
@@ -46,10 +45,22 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint'
-    }
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    const val = <Trans>Some string</Trans>',
+        '    return <div>{val}</div>;',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+    },
   ],
 
-  invalid: [
+  invalid: [,
     {
       code: [
         'class Comp1 extends Component {',
@@ -60,7 +71,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     },
     {
       code: [
@@ -72,7 +83,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     },
     {
       code: [
@@ -84,7 +95,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     },
 
      {
@@ -98,7 +109,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     }, {
       code: [
         'class Comp1 extends Component {',
@@ -110,7 +121,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     }, {
       code: [
         'var Hello = React.createClass({',
@@ -122,7 +133,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     }, {
       code: [
         'class Comp1 extends Component {',
@@ -137,7 +148,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     }, {
       code: [
         'class Comp1 extends Component {',
@@ -154,7 +165,7 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
     },
     {
       code: [
@@ -162,7 +173,6 @@ ruleTester.run('string-is-marked-for-translation', rule, {
         '  render() {',
         '    return (',
         '      <div>',
-        '        <FormattedMessage id="erodfasf" defaultMessage="houheirh"/>',
         '        <h4>FALSELS</h4>',
         '      </div>',
         '    );',
@@ -171,7 +181,194 @@ ruleTester.run('string-is-marked-for-translation', rule, {
       ].join('\n'),
       args: [1],
       parser: 'babel-eslint',
-      errors: [{message: 'Found string literal inside JSX, should be inside a <Formatted* /> component'}]
+      errors: [{message: 'String is not marked for translation.'}]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <div>',
+        '        <FormattedMessage defaultMessage="houheirh"/>',
+        '      </div>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [{ message: 'String is not marked for translation.' }]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <div>',
+        '        <FormattedMessage defaultMessage="houheirh" something="hello"/>',
+        '      </div>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'const word = "Hello"',
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <div>',
+        '        {word}',
+        '      </div>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'const word = `Hello ${1}`',
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <div>',
+        '        {word}',
+        '      </div>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <div>',
+        '        {`Hello ${1}`}',
+        '      </div>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <Trans>',
+        '        {`Hello ${1}`}',
+        '      </Trans>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    const some = {hello: "world"}',
+        '    return (',
+        '      <Trans>',
+        '        {some.hello}',
+        '      </Trans>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    const some = val = () => "world"',
+        '    return (',
+        '      <Trans>',
+        '        {some()}',
+        '      </Trans>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    const some = val = () => true',
+        '    return (',
+        '      <Trans>',
+        '        {some("world")}',
+        '      </Trans>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
+    },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  someFunction(val) {',
+        '   return "some_value"',
+        '}',
+        '  render() {',
+        '    return (',
+        '      <Trans>',
+        '        {someFunction()}',
+        '      </Trans>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint',
+      errors: [
+        { message: 'String is not marked for translation.' },
+      ]
     },
   ]
 });

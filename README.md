@@ -1,7 +1,7 @@
-ESLint-plugin-React-intl
+ESLint-plugin-linguijs
 ===================
 
-React-intl (2.0) specific linting rules for ESLint
+Lingui.JS specific linting rules for ESLint, based on `eslint-plugin-react-intl`
 
 # Installation
 
@@ -24,47 +24,15 @@ Add `plugins` section and specify ESLint-plugin-React as a plugin.
 ```json
 {
   "plugins": [
-    "react-intl"
+    "linguijs"
   ]
-}
-```
-
-
-If it is not already the case you must also configure `ESLint` to support JSX.
-
-With ESLint 1.x.x:
-
-```json
-{
-  "ecmaFeatures": {
-    "jsx": true
-  }
-}
-```
-
-With ESLint 2.x.x:
-
-```json
-{
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  }
 }
 ```
 
 # List of supported rules
 
-* string-is-marked-for-translation: Catch strings that aren't marked for translation, e.g. contained in a <FormattedSomething /> component from react-intl 2.0.
-* is-valid-icu-message-syntax: Catch `defaultMessage` attributes that aren't valid ICU message syntax
-
-# Thanks
-* [Eslint-plugin-React](https://github.com/yannickcr/eslint-plugin-react) by [Yannick Croissant](https://github.com/yannickcr), where many parts of this plugin were lifted from.
+* string-is-marked-for-translation: Catch strings that aren't marked for translation, e.g. contained in a <Trans /> or <Plural> component from LinguiJS.
 
 # License
 
-ESLint-plugin-React-intl is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
-
-
-[npm-url]: https://npmjs.org/package/eslint-plugin-react-intl
+ESLint-plugin-linguijs is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).

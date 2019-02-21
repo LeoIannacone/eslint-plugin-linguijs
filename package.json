@@ -1,12 +1,12 @@
 {
-  "name": "eslint-plugin-react-intl",
-  "version": "1.1.2",
-  "description": "React-intl specific linting rules for ESLint",
+  "name": "eslint-plugin-linguijs",
+  "version": "1.0.0",
+  "description": "LinguiJS specific linting rules for ESLint",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/**/*.js --reporter dot"
   },
-  "author": "Rami Valta rami.valta@soikea.com",
+  "author": "Leo Iannacone info@leoiannacone.com",
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^6.0.0-beta.6",
