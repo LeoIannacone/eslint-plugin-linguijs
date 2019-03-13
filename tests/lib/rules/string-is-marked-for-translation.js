@@ -839,6 +839,25 @@ var allInvalid = [
       { message: 'String is not marked for translation.' },
       { message: 'String is not marked for translation.' },
     ]
+  },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '   return (',
+      '     <Trans>',
+      '       This text is ok',
+      '       <Button lable="this is not" />',
+      '     </Trans>',
+      '    )',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+    errors: [
+      { message: 'String is not marked for translation.' },
+    ]
   }
 ]
 
