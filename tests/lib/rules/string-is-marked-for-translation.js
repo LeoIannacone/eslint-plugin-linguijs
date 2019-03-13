@@ -33,6 +33,23 @@ var allValid = [
     args: [1],
     parser: 'babel-eslint'
   },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <div>',
+        '        <Trans>',
+        '          Some string<span>nested here <a href="/">another one</a></span>',
+        '        </Trans>',
+        '      </div>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint'
+    },
   {
     code: [
       'class Comp1 extends Component {',
