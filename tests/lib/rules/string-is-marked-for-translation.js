@@ -355,6 +355,31 @@ var allValid = [
     args: [1],
     parser: 'babel-eslint',
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '   document.querySelector(".MessageComposer textarea: nth - child(2)")',
+      '   return null',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+  },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '   lodash.something(".MessageComposer textarea: nth - child(2)")',
+      '   return null',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    options: [{ ignoreFunctions: ["lodash.something"] }],
+    parser: 'babel-eslint',
+  }
 ]
 
 var allInvalid = [
