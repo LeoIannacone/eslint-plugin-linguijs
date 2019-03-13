@@ -380,7 +380,17 @@ var allValid = [
     args: [1],
     options: [{ ignoreFunctions: ["lodash.something"] }],
     parser: 'babel-eslint',
-  }
+  },
+  {
+    code: [
+      'export const goBack = ({ alt, router }) => {',
+      '  return navigator.userAgent.indexOf("Safari") !== -1',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+    options: [{ ignoreFunctions: ["userAgent.indexOf"] }],
+  },
 ]
 
 var allInvalid = [
