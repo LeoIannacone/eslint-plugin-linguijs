@@ -359,7 +359,8 @@ var allValid = [
     code: [
       'class Comp1 extends Component {',
       '  render() {',
-      '   document.querySelector(".MessageComposer textarea: nth - child(2)")',
+      '   document.querySelector(".Main .ButtonBack")',
+      '   const d = document.querySelectorAll(".Main .ButtonBack")',
       '   return null',
       '  }',
       '}'
