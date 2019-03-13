@@ -339,6 +339,22 @@ var allValid = [
     args: [1],
     parser: 'babel-eslint',
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '   const title = i18n._(plural({',
+      '     value: count,',
+      '     one: "You have one message",',
+      '     other: "You have # messages",',
+      '   }))',
+      '   return title',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+  },
 ]
 
 var allInvalid = [
