@@ -33,40 +33,23 @@ var allValid = [
     args: [1],
     parser: 'babel-eslint'
   },
-  {
-    code: [
-      'class Comp1 extends Component {',
-      '  render() {',
-      '    return (',
-      '      <div>',
-      '        <Trans>',
-      '          Some string<span>nested here <a href="/">another one</a></span>',
-      '        </Trans>',
-      '      </div>',
-      '    );',
-      '  }',
-      '}'
-    ].join('\n'),
-    args: [1],
-    parser: 'babel-eslint'
-  },
-  {
-    code: [
-      'class Comp1 extends Component {',
-      '  render() {',
-      '   return(',
-      '     <Plural',
-      '       value = { messagesCount }',
-      '       one = "There\'s # message in your inbox."',
-      '       other = "There\'re # messages in your inbox."',
-      '       />',
-      '    )',
-      '  }',
-      '}'
-    ].join('\n'),
-    args: [1],
-    parser: 'babel-eslint',
-  },
+    {
+      code: [
+        'class Comp1 extends Component {',
+        '  render() {',
+        '    return (',
+        '      <div>',
+        '        <Trans>',
+        '          Some string<span>nested here <a href="/">another one</a></span>',
+        '        </Trans>',
+        '      </div>',
+        '    );',
+        '  }',
+        '}'
+      ].join('\n'),
+      args: [1],
+      parser: 'babel-eslint'
+    },
   {
     code: [
       'class Comp1 extends Component {',
@@ -342,6 +325,18 @@ var allValid = [
     ].join('\n'),
     args: [1],
     options: [{ ignoreFunctions: ["cls"] }],
+    parser: 'babel-eslint',
+  },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '   const title = I18n._(t`${this.props.enquiry.id} job`)',
+      '   return title',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
     parser: 'babel-eslint',
   },
 ]
