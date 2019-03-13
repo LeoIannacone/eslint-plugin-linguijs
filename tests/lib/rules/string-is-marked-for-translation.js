@@ -391,6 +391,22 @@ var allValid = [
     parser: 'babel-eslint',
     options: [{ ignoreFunctions: ["userAgent.indexOf"] }],
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '    return (',
+      '      <Button type="SUBMIT" />',
+      '    );',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+    errors: [
+      { message: 'String is not marked for translation.' },
+    ]
+  },
 ]
 
 var allInvalid = [
@@ -774,22 +790,6 @@ var allInvalid = [
       'class Comp1 extends Component {',
       '  render() {',
       '    return (',
-      '      <Button label="SUBMIT" />',
-      '    );',
-      '  }',
-      '}'
-    ].join('\n'),
-    args: [1],
-    parser: 'babel-eslint',
-    errors: [
-      { message: 'String is not marked for translation.' },
-    ]
-  },
-  {
-    code: [
-      'class Comp1 extends Component {',
-      '  render() {',
-      '    return (',
       '      <Button label="Submit" />',
       '    );',
       '  }',
@@ -858,7 +858,7 @@ var allInvalid = [
     errors: [
       { message: 'String is not marked for translation.' },
     ]
-  }
+  },
 ]
 
 var ruleTester = new RuleTester();
