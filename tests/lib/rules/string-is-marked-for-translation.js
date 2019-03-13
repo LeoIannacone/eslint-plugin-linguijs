@@ -297,6 +297,19 @@ var allValid = [
     args: [1],
     parser: 'babel-eslint',
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '   const cls = el => el ? `Copyright-${el}` : "Copyright"',
+      '   return null',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    options: [{ ignoreFunctions: ["cls"] }],
+    parser: 'babel-eslint',
+  },
 ]
 
 var allInvalid = [
