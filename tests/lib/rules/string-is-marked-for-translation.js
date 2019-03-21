@@ -874,6 +874,20 @@ var allInvalid = [
       { message: 'String is not marked for translation.' },
     ]
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '    throw new Error("A prop error")',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+    errors: [
+      { message: 'String is not marked for translation.' },
+    ]
+  },
 ]
 
 var ruleTester = new RuleTester();
