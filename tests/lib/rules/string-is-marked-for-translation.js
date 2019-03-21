@@ -859,6 +859,21 @@ var allInvalid = [
       { message: 'String is not marked for translation.' },
     ]
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '    const errorMessage = priceResult.coupon.message || "Discount code invalid"',
+      '    return errorMessage',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+    errors: [
+      { message: 'String is not marked for translation.' },
+    ]
+  },
 ]
 
 var ruleTester = new RuleTester();
