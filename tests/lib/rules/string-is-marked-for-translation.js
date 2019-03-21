@@ -888,6 +888,26 @@ var allInvalid = [
       { message: 'String is not marked for translation.' },
     ]
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  onSendReminder () {',
+      '    return Promise.reject("Not Implemented")',
+      '  }',
+      '  render() {',
+      '    this.onSendReminder()',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+    options: [{
+      ignoreFunctions: ["console.log"],
+    }],
+    errors: [
+      { message: 'String is not marked for translation.' },
+    ]
+  },
 ]
 
 var ruleTester = new RuleTester();
