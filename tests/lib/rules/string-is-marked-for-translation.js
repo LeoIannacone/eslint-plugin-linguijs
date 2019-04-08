@@ -419,6 +419,21 @@ var allValid = [
       { message: 'String is not marked for translation.' },
     ]
   },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '    return this.props.arrayList.map(a => ',
+      '      <Trans>',
+      '        Hello',
+      '      </Trans>',
+      '    );',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+  },
 ]
 
 var allInvalid = [
