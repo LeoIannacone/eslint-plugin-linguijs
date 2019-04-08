@@ -415,9 +415,6 @@ var allValid = [
     ].join('\n'),
     args: [1],
     parser: 'babel-eslint',
-    errors: [
-      { message: 'String is not marked for translation.' },
-    ]
   },
   {
     code: [
@@ -427,6 +424,19 @@ var allValid = [
       '      <Trans>',
       '        Hello',
       '      </Trans>',
+      '    );',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+  },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
+      '    return (',
+      '      <Modal content={<Trans>Something here</Trans>} />',
       '    );',
       '  }',
       '}'
