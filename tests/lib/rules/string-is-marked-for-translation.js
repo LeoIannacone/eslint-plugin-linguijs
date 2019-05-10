@@ -371,6 +371,23 @@ var allValid = [
     code: [
       'class Comp1 extends Component {',
       '  render() {',
+      '   return (',
+      '     <Plural',
+      '       value={count}',
+      '       one="You have one message"',
+      '       other="You have # messages"',
+      '     />',
+      '    )',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
+  },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  render() {',
       '   document.querySelector(".Main .ButtonBack")',
       '   const d = document.querySelectorAll(".Main .ButtonBack")',
       '   return null',
