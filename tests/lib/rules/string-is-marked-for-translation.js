@@ -93,14 +93,14 @@ var allValid = [
       'class Comp1 extends Component {',
       '  render() {',
       '    return (',
-      '      <div ingoredAttr="someClassName">',
+      '      <div ignoredAttr="someClassName">',
       '        {user.name}',
       '      </div>',
       '    );',
       '  }',
       '}'
     ].join('\n'),
-    options: [{ ignoreAttributes: ["ingoredAttr"] }],
+    options: [{ ignoreAttributes: ["ignoredAttr"] }],
     args: [1],
     parser: 'babel-eslint',
   },
@@ -958,6 +958,23 @@ var allInvalid = [
     options: [{
       ignoreFunctions: ["console.log"],
     }],
+    errors: [
+      { message: 'String is not marked for translation.' },
+    ]
+  },
+  {
+    code: [
+      'class Comp1 extends Component {',
+      '  onSendReminder (param = "Hello world") {',
+      '    return param',
+      '  }',
+      '  render() {',
+      '    this.onSendReminder()',
+      '  }',
+      '}'
+    ].join('\n'),
+    args: [1],
+    parser: 'babel-eslint',
     errors: [
       { message: 'String is not marked for translation.' },
     ]
